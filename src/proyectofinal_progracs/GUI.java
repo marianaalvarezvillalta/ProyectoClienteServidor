@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class GUI extends javax.swing.JFrame {
+    //pinga me cago en la gonorrea de github (_8(I)
 
     public GUI() {
         initComponents();
