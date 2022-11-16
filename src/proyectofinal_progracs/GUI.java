@@ -5,7 +5,9 @@ import javax.swing.JOptionPane;
 
 public class GUI extends javax.swing.JFrame {
     //pinga me cago en la gonorrea de github (_8(I)
+    
 
+    //gg 
     public GUI() {
         initComponents();
         setVisible(true);
