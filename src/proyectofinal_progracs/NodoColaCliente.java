@@ -1,21 +1,21 @@
 package proyectofinal_progracs;
 
-public class NodoCola {
-    private NodoCola atras;
+public class NodoColaCliente {
+    private NodoColaCliente atras;
     private Cliente cliente;
 
-    public NodoCola() {
+    public NodoColaCliente() {
     }
 
-    public NodoCola(Cliente cliente) {
+    public NodoColaCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public NodoCola getAtras() {
+    public NodoColaCliente getAtras() {
         return atras;
     }
 
-    public void setAtras(NodoCola atras) {
+    public void setAtras(NodoColaCliente atras) {
         this.atras = atras;
     }
 

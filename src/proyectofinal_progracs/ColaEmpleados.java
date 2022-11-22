@@ -1,18 +1,18 @@
 package proyectofinal_progracs;
 
-public class ColaClientes {
-    private NodoColaCliente frente;
-    private NodoColaCliente ultimo;
+public class ColaEmpleados {
+    private NodoColaEmpleado frente;
+    private NodoColaEmpleado ultimo;
     public int largo;
 
-    public ColaClientes() {
+    public ColaEmpleados() {
     }
 
     //metodo que agrega una orden a la cola
-    public void encola(Cliente cliente) {
+    public void encola(Empleado empleado) {
 
-        NodoColaCliente nodito = new NodoColaCliente();
-        nodito.setCliente(cliente);
+        NodoColaEmpleado nodito = new NodoColaEmpleado();
+        nodito.setEmpleado(empleado);
         nodito.setAtras(null);
 
         if (ColaVacia()) {
@@ -36,26 +36,14 @@ public class ColaClientes {
             return false;
         }
     }
-
-    //metodo que elimina al primero de la cola
-    public NodoColaCliente eliminaPrimero() {
-
-        NodoColaCliente aux = frente;
-        if (frente != null) {
-            frente = frente.getAtras();
-            aux.setAtras(null);
-        }
-        largo--;
-        return aux;
-    }
-
-    public String toStringColaClientes() {
+    
+    public String toStringColaEmpleado() {
         String stringConTodalaInfodelaCola = "";
-        NodoColaCliente aux = frente;
+        NodoColaEmpleado aux = frente;
         while (aux != null) {
 
             stringConTodalaInfodelaCola = stringConTodalaInfodelaCola
-                    + aux.getCliente().toStringCliente() + "\n";
+                    + aux.getEmpleado().toStringEmpleado() + "\n";
             aux = aux.getAtras();
         }
         stringConTodalaInfodelaCola = "<Frente>\n"

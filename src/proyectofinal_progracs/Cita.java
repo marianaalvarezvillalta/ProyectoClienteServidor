@@ -5,16 +5,16 @@ public class Cita {
     private int idCita;
     private int hora;
 
-    public Cita(Cliente cliente, int idCita, int hora) {
-        this.cliente = cliente;
+    public Cita(/*Cliente cliente,*/ int idCita, int hora) {
+        //this.cliente = cliente;
         this.idCita = idCita;
         this.hora = hora;
     }
 
-    public Cita(int idCita, int hora) {
-        this.idCita = idCita;
-        this.hora = hora;
-    }
+//    public Cita(int idCita, int hora) {
+//        this.idCita = idCita;
+//        this.hora = hora;
+//    }
     
 
     public Cliente getCliente() {
@@ -44,7 +44,7 @@ public class Cita {
     @Override
     public String toString() {
         return ""
-                +"\nCliente: "+cliente.getNombre()
+                //+"\nCliente: "+cliente.getNombre()
                 +"\nID de Cita: "+idCita
                 +"\nHora: "+hora;
     }
