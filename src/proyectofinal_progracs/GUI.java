@@ -1,27 +1,44 @@
 package proyectofinal_progracs;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class GUI extends javax.swing.JFrame {
-    
+
+    //ARCHIVOS
+    //Booleanos de comprobación
+    public boolean checkboxAdmin;
+    public boolean checkboxCliente;
+    public boolean checkboxEmpleado;
+    public boolean checkboxCita;
+    //Nombres de ficheros .txt
+    private static final String ficheroAdmin = "Administradores.txt";
+    private static final String ficheroCliente = "Clientes.txt";
+    private static final String ficheroEmpleado = "Empleados.txt";
+    private static final String ficheroCita = "Citas.txt";
+
     public GUI() {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        
-        Empleado empleado1 = new Empleado("Daniel Avila",25,345620);
-        Empleado empleado2 = new Empleado("Cynthia Zuñiga",40,643213);
-        Empleado empleado3 = new Empleado("Juan Rodriguez",30,245217);
-        Empleado empleado4 = new Empleado("Nidia Alfaro",56,654234);
+
+        Empleado empleado1 = new Empleado("Daniel Avila", 25, 345620);
+        Empleado empleado2 = new Empleado("Cynthia Zuñiga", 40, 643213);
+        Empleado empleado3 = new Empleado("Juan Rodriguez", 30, 245217);
+        Empleado empleado4 = new Empleado("Nidia Alfaro", 56, 654234);
         colaEmpleados.encola(empleado1);
         colaEmpleados.encola(empleado2);
         colaEmpleados.encola(empleado3);
         colaEmpleados.encola(empleado4);
         displayEmpleados.setText(colaEmpleados.toStringColaEmpleado());
-        
-        Administrador admin1 = new Administrador("Karla Vega",43,20110);
-        Administrador admin2 = new Administrador("Oscar Leitón",51,20111);
+
+        Administrador admin1 = new Administrador("Karla Vega", 43, 20110);
+        Administrador admin2 = new Administrador("Oscar Leitón", 51, 20111);
         colaAdmin.encola(admin1);
         colaAdmin.encola(admin2);
         displayAdministradores.setText(colaAdmin.toStringColaAdministrador());
@@ -73,6 +90,16 @@ public class GUI extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jTabbedPane12 = new javax.swing.JTabbedPane();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jTabbedPane7 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
@@ -318,6 +345,76 @@ public class GUI extends javax.swing.JFrame {
 
         jTabbedPane8.addTab("Empleado", jTabbedPane10);
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setText("Seleccione la información que desea exportar:");
+
+        jCheckBox1.setText("Administradores");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox2.setText("Clientes");
+
+        jCheckBox3.setText("Empleados");
+
+        jCheckBox4.setText("Citas");
+
+        jLabel13.setText("Personas");
+
+        jLabel14.setText("Datos");
+
+        jButton1.setText("EXPORTAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel14)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox4)
+                    .addComponent(jCheckBox3)
+                    .addComponent(jCheckBox2)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12))
+                .addContainerGap(331, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox3)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
+        jTabbedPane12.addTab("Información", jPanel7);
+
+        jTabbedPane8.addTab("Exportar", jTabbedPane12);
+
         jTabbedPane1.addTab("Administración", jTabbedPane8);
 
         displayAtender.setColumns(20);
@@ -466,36 +563,36 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
 
-        try{
+        try {
             int hora = Integer.parseInt(txtHora.getText());
             int idCita;
             boolean idCitaYaEstapresente = false;
-            do{
+            do {
                 //creamos un id random para el id
-                 idCita = (int) (Math.random() * 10000 + 1);
+                idCita = (int) (Math.random() * 10000 + 1);
                 //el ID es unico asi que solo se va a asignar si no esta 
                 //presente en el arraylist registrado
-                idCitaYaEstapresente=buscarSiIDEstaRepetido(idCita);
-            }while(idCitaYaEstapresente);
-            
+                idCitaYaEstapresente = buscarSiIDEstaRepetido(idCita);
+            } while (idCitaYaEstapresente);
+
             //agregarID a laLista
             idCitaArraylist.add(idCita);
-            
-            Cita cita=new Cita(idCita,hora);
+
+            Cita cita = new Cita(idCita, hora);
             listaCitas.inserta(cita);
             displayCitas.setText(listaCitas.toStringListaCitas());
-            displayEmpleados.setText(listaCitas.toStringListaCitas());
+            //displayEmpleados.setText(listaCitas.toStringListaCitas());
             displayCitasAgendadas.setText(listaCitas.toStringListaCitas());
             displayAtender.setText(listaCitas.toStringListaCitas());
-            
-            if(hora!=hora){
-               throw new Exception("Debe introducir números"); 
+
+            if (hora != hora) {
+                throw new Exception("Debe introducir números");
             }
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage());  
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
         txtHora.setText("");
     }//GEN-LAST:event_btnAgendarActionPerformed
 
@@ -505,35 +602,34 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String nombre = txtNombre.getText();
-        try{
+        try {
             int edad = Integer.parseInt(txtEdad.getText());
             int idCliente;
             boolean idClienteYaEstapresente = false;
-            do{
+            do {
                 //creamos un id random para el traste
-                 idCliente = (int) (Math.random() * 10000 + 1);
+                idCliente = (int) (Math.random() * 10000 + 1);
                 //el ID es unico asi que solo se va a asignar si no esta 
                 //presente en el arraylist registrado
-                idClienteYaEstapresente=buscarSiIDEstaRepetidoCliente(idCliente);
-            }while(idClienteYaEstapresente);
+                idClienteYaEstapresente = buscarSiIDEstaRepetidoCliente(idCliente);
+            } while (idClienteYaEstapresente);
             //agregarID a laLista
             idClienteArraylist.add(idCliente);
             cmbCliente.addItem(nombre);
-            
-            Cliente cliente = new Cliente(nombre,edad,idCliente);
+
+            Cliente cliente = new Cliente(nombre, edad, idCliente);
             colaClientes.encola(cliente);
             displayClientes.setText(colaClientes.toStringColaClientes());
             displayClientesRegistrados.setText(colaClientes.toStringColaClientes());
             displayClientesRegsitrados2.setText(colaClientes.toStringColaClientes());
-            if(edad!=edad){
-               throw new Exception("Debe introducir números"); 
+            if (edad != edad) {
+                throw new Exception("Debe introducir números");
             }
-            
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());   
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
-        
+
         txtNombre.setText("");
         txtEdad.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -549,6 +645,103 @@ public class GUI extends javax.swing.JFrame {
         displayCitas.setText(listaCitas.toStringListaCitas());
     }//GEN-LAST:event_btnAtenderActionPerformed
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        resetRegistros(); //Pone en false los booleanos de comprobación
+
+        comprobarCheckbox(); //Comprueba si los checkbox están marcados
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comprobarCheckbox() {
+        if (jCheckBox1.isSelected()) {
+            checkboxAdmin = true;
+            //System.out.println("admin: " + checkboxAdmin);
+        }
+        if (jCheckBox2.isSelected()) {
+            checkboxCliente = true;
+            //System.out.println("cliente: " + checkboxCliente);
+        }
+        if (jCheckBox3.isSelected()) {
+            checkboxEmpleado = true;
+            //System.out.println("empleado: " + checkboxEmpleado);
+        }
+        if (jCheckBox4.isSelected()) {
+            checkboxCita = true;
+            //System.out.println("cita: " + checkboxCita);
+        }
+        exportar(); // Guarda la información en los archivos
+    }
+
+    private void exportar() {
+        if (checkboxAdmin) {
+            try {
+                String reg = displayAdministradores.getText();
+                FileWriter fw = new FileWriter(ficheroAdmin);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(reg);
+                bw.close();
+                //System.out.println("Debug: Admin Reg Saved");
+
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (checkboxCliente) {
+            try {
+                String reg = displayClientes.getText();
+                FileWriter fw = new FileWriter(ficheroCliente);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(reg);
+                bw.close();
+                //System.out.println("Debug: Cliente Reg Guardado");
+
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (checkboxEmpleado) {
+            try {
+                String reg = displayEmpleados.getText();
+                FileWriter fw = new FileWriter(ficheroEmpleado);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(reg);
+                bw.close();
+                //System.out.println("Debug: Empleado Reg Guardado");
+
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (checkboxCita) {
+            try {
+                String reg = displayCitas.getText();
+                FileWriter fw = new FileWriter(ficheroCita);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(reg);
+                bw.close();
+                //System.out.println("Debug: Cita Reg Guardado");
+
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void resetRegistros() {
+        checkboxAdmin = false;
+        checkboxCliente = false;
+        checkboxEmpleado = false;
+        checkboxCita = false;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -563,16 +756,24 @@ public class GUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -587,27 +788,28 @@ public class GUI extends javax.swing.JFrame {
     //en esta rutina se envia un id generado de forma aleatoria y se compara
     //con todos los IDs existentes registrados para que no haya repeticiones
     //en caso de haber una repeticion sale un true 
-    private boolean buscarSiIDEstaRepetido(int idUnico){
+    private boolean buscarSiIDEstaRepetido(int idUnico) {
         boolean IDEstaRepetido = false;
-        for (int i=0; i<idCitaArraylist.size(); i++){
-            if (idUnico==idCitaArraylist.get(i)){
+        for (int i = 0; i < idCitaArraylist.size(); i++) {
+            if (idUnico == idCitaArraylist.get(i)) {
                 IDEstaRepetido = true;
             }
         }
- 
+
         return IDEstaRepetido;
     }
+
     //en esta rutina se envia un id generado de forma aleatoria y se compara
     //con todos los IDs existentes registrados para que no haya repeticiones
     //en caso de haber una repeticion sale un true 
-    private boolean buscarSiIDEstaRepetidoCliente(int idUnico){
+    private boolean buscarSiIDEstaRepetidoCliente(int idUnico) {
         boolean IDEstaRepetido = false;
-        for (int i=0; i<idClienteArraylist.size(); i++){
-            if (idUnico==idClienteArraylist.get(i)){
+        for (int i = 0; i < idClienteArraylist.size(); i++) {
+            if (idUnico == idClienteArraylist.get(i)) {
                 IDEstaRepetido = true;
             }
         }
- 
+
         return IDEstaRepetido;
     }
     ArrayList<Integer> idClienteArraylist = new ArrayList<Integer>();
@@ -631,10 +833,18 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea displayClientesRegistrados;
     private javax.swing.JTextArea displayClientesRegsitrados2;
     private javax.swing.JTextArea displayEmpleados;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -648,6 +858,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -660,6 +871,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane10;
+    private javax.swing.JTabbedPane jTabbedPane12;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
