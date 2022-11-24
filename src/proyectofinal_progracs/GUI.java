@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class GUI extends javax.swing.JFrame {
 
@@ -21,6 +25,10 @@ public class GUI extends javax.swing.JFrame {
     private static final String ficheroCliente = "Clientes.txt";
     private static final String ficheroEmpleado = "Empleados.txt";
     private static final String ficheroCita = "Citas.txt";
+    // Servidor
+    static ServerSocket serverSocket;
+    static Socket socket;
+    static DataOutputStream dataOutput;
 
     public GUI() {
         initComponents();
@@ -639,10 +647,20 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
-        listaCitas.eliminaPrimero();
-        displayAtender.setText(listaCitas.toStringListaCitas());
-        displayCitasAgendadas.setText(listaCitas.toStringListaCitas());
-        displayCitas.setText(listaCitas.toStringListaCitas());
+        try {
+            String envio = "";
+
+            envio = listaCitas.toStringListaCitas();
+            dataOutput.writeUTF(envio);
+
+            System.out.println(envio);
+
+            listaCitas.eliminaPrimero();
+            displayAtender.setText(listaCitas.toStringListaCitas());
+            displayCitasAgendadas.setText(listaCitas.toStringListaCitas());
+            displayCitas.setText(listaCitas.toStringListaCitas());
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnAtenderActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -783,6 +801,13 @@ public class GUI extends javax.swing.JFrame {
                 new GUI().setVisible(true);
             }
         });
+        try {
+            String envio = "";
+            serverSocket = new ServerSocket(1333);
+            socket = serverSocket.accept();
+            dataOutput = new DataOutputStream(socket.getOutputStream());
+        } catch (Exception e) {
+        }
     }
 
     //en esta rutina se envia un id generado de forma aleatoria y se compara

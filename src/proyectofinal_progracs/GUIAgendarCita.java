@@ -6,6 +6,10 @@ package proyectofinal_progracs;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  *
@@ -13,9 +17,10 @@ import javax.swing.JOptionPane;
  */
 public class GUIAgendarCita extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUIAgendarCita
-     */
+    static ServerSocket serverSocket;
+    static Socket socket;
+    static DataOutputStream dataOutput;
+
     public GUIAgendarCita() {
         initComponents();
         setVisible(true);
@@ -132,11 +137,11 @@ public class GUIAgendarCita extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgendar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgendar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSalir)
@@ -150,7 +155,7 @@ public class GUIAgendarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
-        
+
     }//GEN-LAST:event_cmbClientesActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -158,31 +163,31 @@ public class GUIAgendarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        int horaInt=0;
-        try{
+        int horaInt = 0;
+        try {
             String horaString = txtHora.getText();
             horaInt = Integer.parseInt(horaString);
-            
+
             int idCita;
             boolean idCitaYaEstapresente = false;
-            do{
+            do {
                 //creamos un id random para el traste
-                 idCita = (int) (Math.random() * 10000 + 1);
+                idCita = (int) (Math.random() * 10000 + 1);
                 //el ID es unico asi que solo se va a asignar si no esta 
                 //presente en el arraylist registrado
-                idCitaYaEstapresente=buscarSiIDEstaRepetido(idCita);
-            }while(idCitaYaEstapresente);
+                idCitaYaEstapresente = buscarSiIDEstaRepetido(idCita);
+            } while (idCitaYaEstapresente);
             //agregarID a laLista
             idCitaArraylist.add(idCita);
-            
+
             //Cita cita=new Cita(idCita,horaInt);
             //listaCitas.inserta(cita);
             displayCitas.setText(listaCitas.toStringListaCitas());
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,e.getMessage());  
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
-        txtHora.setText(""); 
+
+        txtHora.setText("");
     }//GEN-LAST:event_btnAgendarActionPerformed
 
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
@@ -224,17 +229,18 @@ public class GUIAgendarCita extends javax.swing.JFrame {
             }
         });
     }
+
     //en esta rutina se envia un id generado de forma aleatoria y se compara
     //con todos los IDs existentes registrados para que no haya repeticiones
     //en caso de haber una repeticion sale un true 
-    private boolean buscarSiIDEstaRepetido(int idUnico){
+    private boolean buscarSiIDEstaRepetido(int idUnico) {
         boolean IDEstaRepetido = false;
-        for (int i=0; i<idCitaArraylist.size(); i++){
-            if (idUnico==idCitaArraylist.get(i)){
+        for (int i = 0; i < idCitaArraylist.size(); i++) {
+            if (idUnico == idCitaArraylist.get(i)) {
                 IDEstaRepetido = true;
             }
         }
- 
+
         return IDEstaRepetido;
     }
     ArrayList<Integer> idCitaArraylist = new ArrayList<Integer>();
