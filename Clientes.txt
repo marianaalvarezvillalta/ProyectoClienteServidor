@@ -1,0 +1,9 @@
+<Frente>
+
+----Cliente----
+Nombre: Mariana
+Edad: 19
+ID de Cliente: 946
+
+
+<Final>

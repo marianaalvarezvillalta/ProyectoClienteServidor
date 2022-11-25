@@ -9,13 +9,13 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import javax.swing.JTextArea;
 
-public class Resivodedatos extends javax.swing.JFrame {
+public class Recibodedatos extends javax.swing.JFrame {
 
     static Socket socket;
     static DataInputStream dataInput;
     static DataOutputStream dataOutput;
 
-    public Resivodedatos() {
+    public Recibodedatos() {
         initComponents();
     }
 
@@ -74,20 +74,21 @@ public class Resivodedatos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Resivodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Recibodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Resivodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Recibodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Resivodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Recibodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Resivodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Recibodedatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Resivodedatos().setVisible(true);
+                new Recibodedatos().setVisible(true);
             }
         });
         try {
